@@ -8,8 +8,10 @@
 
     <TableLayout
         android:id="@+id/tablaDatos"
-        android:layout_width="413dp"
-        android:layout_height="726dp"
+        style="@style/tableViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="*"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
