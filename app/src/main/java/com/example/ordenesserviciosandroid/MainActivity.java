@@ -24,7 +24,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
     //BuscarProducto("http://192.168.100.5:80/ordenes/consultas.php?id="+idEnviar.getText()+"");
 
-  Button botonIniciar, boton;
+  Button botonIniciar, boton, botonInsertt;
   EditText eContrasena, eCorreo, enviarID, nombrRecibido;
     RequestQueue requestQueue;
 
@@ -38,13 +38,20 @@ public class MainActivity extends AppCompatActivity {
         enviarID = (EditText) findViewById(R.id.idEnviar);
         nombrRecibido = (EditText) findViewById(R.id.nombreRecibido);
         boton = (Button) findViewById(R.id.botonQ);
+        botonInsertt = (Button) findViewById(R.id.insButton);
 
-
+        botonInsertt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, registrarOrden.class);
+                startActivity(intent);
+            }
+        });
 
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BuscarProducto("http://192.168.100.5:80/ordenes/consultas.php?id="+enviarID.getText()+"");
+                BuscarProducto("http://192.168.147.117:80/ordenes/consultas.php?id="+enviarID.getText()+"");
             }
         });
 
