@@ -5,13 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <TableLayout
-        android:id="@+id/tablaDatos"
-        style="@style/tableViewStyle"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewDatos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:stretchColumns="*"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"/>
+        android:orientation="horizontal"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

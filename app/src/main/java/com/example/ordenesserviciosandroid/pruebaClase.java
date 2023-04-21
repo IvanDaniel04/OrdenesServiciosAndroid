@@ -2,17 +2,16 @@ package com.example.ordenesserviciosandroid;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,27 +19,33 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.mysql.cj.result.Row;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class pruebaClase extends AppCompatActivity {
     private final Handler handler = new Handler();
     private Runnable runnableCode = null;
-    private TableLayout tableLayout;
+    private RecyclerView recyclerViewDatos;
+    private TareaAdapter tareaAdapter;
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.prueba); // Establecer el layout de la actividad
-        tableLayout = findViewById(R.id.tablaDatos);
+        setContentView(R.layout.prueba);
+
+        recyclerViewDatos = findViewById(R.id.recyclerViewDatos);
+        recyclerViewDatos.setLayoutManager(new LinearLayoutManager(this));
+
+        tareaAdapter = new TareaAdapter();
+        recyclerViewDatos.setAdapter(tareaAdapter);
 
         obtenerDatos();
-
-
 
         runnableCode = new Runnable() {
             @Override
@@ -50,37 +55,35 @@ public class pruebaClase extends AppCompatActivity {
             }
         };
 
-        // Iniciar la actualización automática
         handler.postDelayed(runnableCode, 10000);
-
     }
+
     RequestQueue requestQueue;
 
     private void obtenerDatos() {
         String url = "http://192.168.100.5:80/ordenes/tareas.php";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        // Procesar los datos devueltos en el array JSON
-                        tableLayout.removeAllViews();
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
-                                JSONObject jsonObject = response.getJSONObject(i);
-                                String id = jsonObject.getString("id");
-                                String descripcion = jsonObject.getString("descripcion");
-                                String ubicacion = jsonObject.getString("ubicacion");
-                                agregarFilaTabla(id, descripcion, ubicacion);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
+            @Override
+            public void onResponse(JSONArray response) {
+                List<Tarea> tareas = new ArrayList<>();
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject jsonObject = response.getJSONObject(i);
+                        int id = jsonObject.getInt("id");
+                        String descripcion = jsonObject.getString("descripcion");
+                        String ubicacion = jsonObject.getString("ubicacion");
+                        tareas.add(new Tarea(id, descripcion, ubicacion));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                },
+                }
+                tareaAdapter.actualizarTareas(tareas);
+            }
+        },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // Manejar el error de la conexión
                         Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
                         Log.e("ERROR_VOLLEY", error.toString());
                     }
@@ -90,52 +93,51 @@ public class pruebaClase extends AppCompatActivity {
         requestQueue.add(jsonArrayRequest);
     }
 
+    private class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHolder> {
+        private List<Tarea> tareas = new ArrayList<>();
 
-    private void agregarFilaTabla(String idValor, String descripcionValor, String ubicacionValor) {
-        TableLayout tableLayout = findViewById(R.id.tablaDatos);
+        @Override
+        public TareaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.recyclestyle, parent, false);
+            return new TareaViewHolder(itemView);
+        }
 
-        // Crear una nueva fila
-        TableRow fila = new TableRow(this);
-        fila.setLayoutParams(new TableRow.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
+        @Override
+        public void onBindViewHolder(TareaViewHolder holder, int position) {
+            Tarea tareaActual = tareas.get(position);
+            holder.textViewId.setText(String.valueOf(tareaActual.getId()));
+            holder.textViewDescripcion.setText(tareaActual.getDescripcion());
+            holder.textViewUbicacion.setText(tareaActual.getUbicacion());
+        }
 
-        // Crear los textviews para cada valor y agregarlos a la fila
-        TextView textViewId = new TextView(this);
-        textViewId.setText(idValor);
-        textViewId.setLayoutParams(new TableRow.LayoutParams(
-                0,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                1f));
-        textViewId.setPadding(5, 5, 5, 5);
-        fila.addView(textViewId);
+        @Override
+        public int getItemCount() {
+            return tareas.size();
+        }
 
-        TextView textViewDescripcion = new TextView(this);
-        textViewDescripcion.setText(descripcionValor);
-        textViewDescripcion.setLayoutParams(new TableRow.LayoutParams(
-                0,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                1f));
-        textViewDescripcion.setPadding(5, 5, 5, 5);
-        fila.addView(textViewDescripcion);
+        public void actualizarTareas(List<Tarea> nuevasTareas) {
+            tareas.clear();
+            tareas.addAll(nuevasTareas);
+            notifyDataSetChanged();
+        }
 
-        TextView textViewUbicacion = new TextView(this);
-        textViewUbicacion.setText(ubicacionValor);
-        textViewUbicacion.setLayoutParams(new TableRow.LayoutParams(
-                0,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                1f));
-        textViewUbicacion.setPadding(5, 5, 5, 5);
-        fila.addView(textViewUbicacion);
+        class TareaViewHolder extends RecyclerView.ViewHolder {
+            private TextView textViewId;
 
-        // Agregar la fila a la tabla
-        tableLayout.addView(fila, new TableLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
+            private TextView textViewDescripcion;
+            private TextView textViewUbicacion;
+
+            public TareaViewHolder(View itemView) {
+                super(itemView);
+                textViewId = itemView.findViewById(R.id.textViewId);
+                textViewDescripcion = itemView.findViewById(R.id.textViewDescripcion);
+                textViewUbicacion = itemView.findViewById(R.id.textViewUbicacion);
+            }
+        }
     }
-
-
 }
+
 
 
 

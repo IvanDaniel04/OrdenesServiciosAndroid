@@ -14,10 +14,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 public class registrarOrden extends AppCompatActivity {
 
@@ -49,23 +52,29 @@ public class registrarOrden extends AppCompatActivity {
     }
 
     private void insertarDatos() {
-
-
         String area = areaText.getText().toString();
         String descripcion = descripText.getText().toString();
         String nombreSolicitante = nombreText.getText().toString();
         String ubicacion = ubiText.getText().toString();
 
-        String url = "http://192.168.147.117:80/ordenes/insertarOrden.php?area=" + area + "&descripcion=" + descripcion + "&nombreSolicitante=" + nombreSolicitante + "&ubicacion=" + ubicacion;
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null,
-                new Response.Listener<JSONObject>() {
+        String url = "http://192.168.100.5:80/ordenes/insertarDatos.php?area=" + area + "&descripcion=" + descripcion + "&nombresolicitante=" + nombreSolicitante + "&ubicacion=" + ubicacion;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(String response) {
                         try {
-                            String mensaje = response.getString("mensaje");
-                            Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
+                            JSONObject jsonObject = new JSONObject(response);
+                            String status = jsonObject.getString("status");
+                            String message = jsonObject.getString("message");
+                            if (status.equals("success")) {
+                                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Log.e("PARSE_ERROR", "Error al parsear JSON: " + response, e);
                         }
                     }
                 },
@@ -83,11 +92,8 @@ public class registrarOrden extends AppCompatActivity {
                 });
 
         requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonObjectRequest);
+        requestQueue.add(stringRequest);
     }
-
-
-
 
 
 }

@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BuscarProducto("http://192.168.147.117:80/ordenes/consultas.php?id="+enviarID.getText()+"");
+                BuscarProducto("http://192.168.100.5:80/ordenes/consultas.php?id="+enviarID.getText()+"");
             }
         });
 
@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void BuscarUsuario(String correo, String contrasena) {
-        //String URL = "http://192.168.100.5:80/ordenes/sesion.php?correo=" + correo + "&contrasena=" + contrasena;
         String URL = "http://192.168.100.5:80/ordenes/sesion.php?correo=" + correo + "&contrasena=" + contrasena;
+        //String URL = "http://192.168.100.5:80/ordenes/sesion.php?correo=" + correo + "&contrasena=" + contrasena;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(URL, null,
                 new Response.Listener<JSONObject>() {
                     @Override
