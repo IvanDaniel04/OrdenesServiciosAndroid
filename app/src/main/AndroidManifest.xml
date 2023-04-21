@@ -27,6 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".pruebaClase" />
+        <activity android:name=".extraInfo" />
     </application>
 
 </manifest>

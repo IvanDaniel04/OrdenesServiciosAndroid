@@ -33,17 +33,19 @@ public class pruebaClase extends AppCompatActivity {
     private Runnable runnableCode = null;
     private RecyclerView recyclerViewDatos;
     private TareaAdapter tareaAdapter;
+    static List<Tarea> tareas = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prueba);
 
         recyclerViewDatos = findViewById(R.id.recyclerViewDatos);
         recyclerViewDatos.setLayoutManager(new LinearLayoutManager(this));
-
         tareaAdapter = new TareaAdapter();
         recyclerViewDatos.setAdapter(tareaAdapter);
+        adapterRecycle adapter = new adapterRecycle(tareas);
 
         obtenerDatos();
 
@@ -66,7 +68,7 @@ public class pruebaClase extends AppCompatActivity {
                 Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                List<Tarea> tareas = new ArrayList<>();
+                tareas.clear(); // borra los datos antiguos de la lista
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject jsonObject = response.getJSONObject(i);
@@ -93,13 +95,13 @@ public class pruebaClase extends AppCompatActivity {
         requestQueue.add(jsonArrayRequest);
     }
 
+
     private class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHolder> {
-        private List<Tarea> tareas = new ArrayList<>();
+
 
         @Override
         public TareaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.recyclestyle, parent, false);
+            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclestyle, parent, false);
             return new TareaViewHolder(itemView);
         }
 
@@ -117,10 +119,10 @@ public class pruebaClase extends AppCompatActivity {
         }
 
         public void actualizarTareas(List<Tarea> nuevasTareas) {
-            tareas.clear();
-            tareas.addAll(nuevasTareas);
+            tareas = nuevasTareas;
             notifyDataSetChanged();
         }
+
 
         class TareaViewHolder extends RecyclerView.ViewHolder {
             private TextView textViewId;
