@@ -1,15 +1,16 @@
 package com.example.ordenesserviciosandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GestureDetectorCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,24 +29,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class pruebaClase extends AppCompatActivity {
+public class pruebaClase extends AppCompatActivity implements TareaAdapter.OnTareaClickListener{
     private final Handler handler = new Handler();
     private Runnable runnableCode = null;
     private RecyclerView recyclerViewDatos;
-    private TareaAdapter tareaAdapter;
+    static TareaAdapter tareaAdapter;
     static List<Tarea> tareas = new ArrayList<>();
+    RequestQueue requestQueue;
+    private GestureDetectorCompat gestureDetector;
+   TareaAdapter.OnTareaClickListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prueba);
 
         recyclerViewDatos = findViewById(R.id.recyclerViewDatos);
         recyclerViewDatos.setLayoutManager(new LinearLayoutManager(this));
-        tareaAdapter = new TareaAdapter();
+        tareaAdapter = new TareaAdapter(this,tareas);
+        tareaAdapter.listener = this;
+        recyclerViewDatos.addOnItemTouchListener(tareaAdapter);
         recyclerViewDatos.setAdapter(tareaAdapter);
-        adapterRecycle adapter = new adapterRecycle(tareas);
+        agregarTouchListener(recyclerViewDatos);
+
 
         obtenerDatos();
 
@@ -56,11 +64,59 @@ public class pruebaClase extends AppCompatActivity {
                 handler.postDelayed(this, 10000);
             }
         };
-
+        this.gestureDetector = new GestureDetectorCompat(this, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onSingleTapConfirmed(MotionEvent e) {
+                View child = recyclerViewDatos.findChildViewUnder(e.getX(), e.getY());
+                if (child != null && listener != null) {
+                    int position = recyclerViewDatos.getChildAdapterPosition(child);
+                    listener.onTareaClick(position);
+                    return true;
+                }
+                return false;
+            }
+        });
         handler.postDelayed(runnableCode, 10000);
+
+    }
+    @Override
+    public void onTareaClick(int position) {
+        // Aquí se maneja el evento de clic en una tarea
+        // En este ejemplo, simplemente mostramos un mensaje con la posición de la tarea clickeada
+        Tarea tareaseleccionada = tareas.get(position);
+        int idTarea = tareaseleccionada.getId();
+        System.out.println("ESTE ES EL ID" + idTarea);
+        Toast.makeText(this, "Tarea clickeada en posición " + position, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(pruebaClase.this, extraInfo.class);
+        startActivity(intent);
     }
 
-    RequestQueue requestQueue;
+
+    public void agregarTouchListener(final RecyclerView recyclerView) {
+        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent( RecyclerView rv,  MotionEvent e) {
+                View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
+                if (child != null && gestureDetector.onTouchEvent(e)) {
+                    int position = recyclerView.getChildAdapterPosition(child);
+                    tareaAdapter.listener.onTareaClick(position);
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
+    }
+
 
     private void obtenerDatos() {
         String url = "http://192.168.100.5:80/ordenes/tareas.php";
@@ -81,6 +137,7 @@ public class pruebaClase extends AppCompatActivity {
                     }
                 }
                 tareaAdapter.actualizarTareas(tareas);
+
             }
         },
                 new Response.ErrorListener() {
@@ -96,48 +153,7 @@ public class pruebaClase extends AppCompatActivity {
     }
 
 
-    private class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHolder> {
 
-
-        @Override
-        public TareaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclestyle, parent, false);
-            return new TareaViewHolder(itemView);
-        }
-
-        @Override
-        public void onBindViewHolder(TareaViewHolder holder, int position) {
-            Tarea tareaActual = tareas.get(position);
-            holder.textViewId.setText(String.valueOf(tareaActual.getId()));
-            holder.textViewDescripcion.setText(tareaActual.getDescripcion());
-            holder.textViewUbicacion.setText(tareaActual.getUbicacion());
-        }
-
-        @Override
-        public int getItemCount() {
-            return tareas.size();
-        }
-
-        public void actualizarTareas(List<Tarea> nuevasTareas) {
-            tareas = nuevasTareas;
-            notifyDataSetChanged();
-        }
-
-
-        class TareaViewHolder extends RecyclerView.ViewHolder {
-            private TextView textViewId;
-
-            private TextView textViewDescripcion;
-            private TextView textViewUbicacion;
-
-            public TareaViewHolder(View itemView) {
-                super(itemView);
-                textViewId = itemView.findViewById(R.id.textViewId);
-                textViewDescripcion = itemView.findViewById(R.id.textViewDescripcion);
-                textViewUbicacion = itemView.findViewById(R.id.textViewUbicacion);
-            }
-        }
-    }
 }
 
 

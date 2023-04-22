@@ -24,8 +24,8 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
     //BuscarProducto("http://192.168.100.5:80/ordenes/consultas.php?id="+idEnviar.getText()+"");
 
-  Button botonIniciar, boton, botonInsertt;
-  EditText eContrasena, eCorreo, enviarID, nombrRecibido;
+    Button botonIniciar, boton, botonInsertt;
+    EditText eContrasena, eCorreo, enviarID, nombrRecibido;
     RequestQueue requestQueue;
 
     @Override
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BuscarProducto("http://192.168.100.5:80/ordenes/consultas.php?id="+enviarID.getText()+"");
+                BuscarProducto("http://192.168.100.5:80/ordenes/consultas.php?id=" + enviarID.getText() + "");
             }
         });
 
@@ -108,8 +108,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    private void BuscarProducto(String URL){
+    private void BuscarProducto(String URL) {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -136,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
-
 
 
 }

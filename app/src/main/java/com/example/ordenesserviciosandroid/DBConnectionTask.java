@@ -14,6 +14,7 @@ public class DBConnectionTask extends AsyncTask<Void, Void, Connection> {
 
     public interface DBConnectionListener {
         void onDBConnectionSuccess(Connection con);
+
         void onDBConnectionError(Exception e);
     }
 
