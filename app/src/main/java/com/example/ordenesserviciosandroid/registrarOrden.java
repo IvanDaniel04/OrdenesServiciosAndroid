@@ -21,7 +21,6 @@ import org.json.JSONObject;
 
 public class registrarOrden extends AppCompatActivity {
 
-
     EditText areaText, descripText, nombreText, ubiText;
     Button insertar;
 
