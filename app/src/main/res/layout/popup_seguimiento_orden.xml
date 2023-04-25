@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/card_border"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:background="@drawable/borderpurple"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:textSize="18sp"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/nosol"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/noSoliText"
+                            android:layout_width="269dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="156dp"
+                        android:orientation="horizontal">
+
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="79dp"
+                            android:layout_height="142dp"
+                            android:layout_margin="10dp"
+                            app:srcCompat="@drawable/i_busqueda"
+                            tools:ignore="ContentDescription" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="153dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="@string/desc"
+                                android:textColor="#181B3A"
+                                android:textStyle="bold|italic" />
+
+                            <TextView
+                                android:id="@+id/textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="70dp"
+                                android:layout_marginEnd="10dp"
+                                android:textColor="@color/griz" />
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="10dp"
+                                android:text="@string/est"
+                                android:textColor="#181B3A"
+                                android:textStyle="bold|italic" />
+
+                            <TextView
+                                android:id="@+id/textView4"
+                                android:layout_width="match_parent"
+                                android:layout_height="39dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="4dp" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/btnAceptar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@string/ac" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+</LinearLayout>

@@ -5,11 +5,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,6 +50,10 @@ public class pruebaClase extends AppCompatActivity implements TareaAdapter.OnTar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prueba);
 
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         recyclerViewDatos = findViewById(R.id.recyclerViewDatos);
         recyclerViewDatos.setLayoutManager(new LinearLayoutManager(this));
         tareaAdapter = new TareaAdapter(this,tareas);
@@ -53,7 +61,6 @@ public class pruebaClase extends AppCompatActivity implements TareaAdapter.OnTar
         recyclerViewDatos.addOnItemTouchListener(tareaAdapter);
         recyclerViewDatos.setAdapter(tareaAdapter);
         agregarTouchListener(recyclerViewDatos);
-
 
         obtenerDatos();
 
@@ -152,6 +159,25 @@ public class pruebaClase extends AppCompatActivity implements TareaAdapter.OnTar
         requestQueue.add(jsonArrayRequest);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.cerrarS){
+
+            Intent intent = new Intent(pruebaClase.this, Login.class);
+            startActivity(intent);
+            Toast.makeText(this, "cerrar sesión", Toast.LENGTH_SHORT).show();
+
+        }
+        return true;
+
+    }
 
 
 }

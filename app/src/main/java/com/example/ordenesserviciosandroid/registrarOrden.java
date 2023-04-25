@@ -1,10 +1,17 @@
 package com.example.ordenesserviciosandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +31,7 @@ public class registrarOrden extends AppCompatActivity {
     EditText areaText, descripText, nombreText, ubiText;
     Button insertar;
 
+    ImageView imgVolveri;
     RequestQueue requestQueue;
 
     @Override
@@ -35,23 +43,26 @@ public class registrarOrden extends AppCompatActivity {
         descripText = (EditText) findViewById(R.id.desPlain);
         nombreText = (EditText) findViewById(R.id.nombrePlain);
         ubiText = (EditText) findViewById(R.id.ubicacionPlain);
-        insertar = (Button) findViewById(R.id.btnInsert);
 
-        insertar.setOnClickListener(new View.OnClickListener() {
+        imgVolveri.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                insertarDatos();
+            public void onClick(View v) {
+
+                // Intent class will help to go to next activity using
+                // it's object named intent.
+                // SecondActivty is the name of new created EmptyActivity.
+                Intent intent = new Intent(registrarOrden.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
     }
 
-    private void insertarDatos() {
+    public void insertarDatos(View view) {
         String area = areaText.getText().toString();
         String descripcion = descripText.getText().toString();
         String nombreSolicitante = nombreText.getText().toString();
         String ubicacion = ubiText.getText().toString();
-
         String url = "http://192.168.100.5:80/ordenes/insertarDatos.php?area=" + area + "&descripcion=" + descripcion + "&nombresolicitante=" + nombreSolicitante + "&ubicacion=" + ubicacion;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -63,8 +74,32 @@ public class registrarOrden extends AppCompatActivity {
                             String status = jsonObject.getString("status");
                             String message = jsonObject.getString("message");
                             if (status.equals("success")) {
-                                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+
+                                LayoutInflater inflater = (LayoutInflater)
+                                        getSystemService(LAYOUT_INFLATER_SERVICE);
+                                View popupView = inflater.inflate(R.layout.popup, null);
+
+                                // create the popup window
+                                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                                boolean focusable = true; // lets taps outside the popup also dismiss it
+                                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+                                // show the popup window
+                                // which view you pass in doesn't matter, it is only used for the window tolken
+                                popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+                                // dismiss the popup window when touched
+                                popupView.setOnTouchListener(new View.OnTouchListener() {
+                                    @Override
+                                    public boolean onTouch(View v, MotionEvent event) {
+                                        popupWindow.dismiss();
+                                        return true;
+                                    }
+                                });
+
                             } else {
+
                                 Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {

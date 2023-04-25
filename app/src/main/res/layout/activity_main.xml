@@ -1,117 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:orientation="vertical"
+    android:theme="@style/Theme.AppCompat.Light"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/i_fondoini1"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Iniciar Sesión"
-        android:textSize="24sp"
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/editCorreo"
-        android:layout_width="343dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="484dp"
-        android:ems="10"
-        android:inputType="textPersonName"
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="129dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/lavender_border"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/hol"
+            android:textColor="@color/lavender"
+            android:textSize="28sp"
+            android:textStyle="bold|italic" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="129dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_marginStart="100dp"
+            android:contentDescription="logo"
+            app:srcCompat="@drawable/logomin" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="402dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-    <EditText
-        android:id="@+id/editContrasena"
-        android:layout_width="340dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="376dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="115dp"
+            android:layout_gravity="center_horizontal"
+            android:columnCount="3"
+            android:rowCount="2"
+            tools:ignore="UselessParent">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
-        android:text="Correo"
-        app:layout_constraintBottom_toTopOf="@+id/editCorreo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/crdinciar"
+                android:layout_width="115dp"
+                android:layout_height="100dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_gravity="bottom"
+                android:layout_margin="8dp"
+                android:background="@color/white"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="Contraseña"
-        app:layout_constraintBottom_toTopOf="@+id/editContrasena"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    tools:ignore="UseCompoundDrawables">
 
-    <Button
-        android:id="@+id/btnIniciar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:text="Iniciar Sesión"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/i_niciarsesion" />
 
-    <EditText
-        android:id="@+id/idEnviar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="180dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/btnIniciar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/iniciar"
+                        android:textAlignment="center"
+                        android:textColor="@color/griz"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-    <EditText
-        android:id="@+id/nombreRecibido"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="104dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/btnIniciar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/crdnueva"
+                android:layout_width="115dp"
+                android:layout_height="100dp"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:layout_gravity="bottom"
+                android:layout_margin="8dp"
+                android:background="@color/white"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp">
 
-    <Button
-        android:id="@+id/botonQ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="316dp"
-        tools:layout_editor_absoluteY="642dp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    tools:ignore="UseCompoundDrawables">
 
-    <Button
-        android:id="@+id/insButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Insertar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintStart_toStartOf="parent" />
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/i_mas" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nueva"
+                        android:textAlignment="center"
+                        android:textColor="@color/griz"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/crdsiguiente"
+                android:layout_width="115dp"
+                android:layout_height="100dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_gravity="bottom"
+                android:layout_margin="8dp"
+                android:background="@color/white"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/i_solicitud" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/seguir"
+                        android:textAlignment="center"
+                        android:textColor="@color/griz"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </GridLayout>
+    </LinearLayout>
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

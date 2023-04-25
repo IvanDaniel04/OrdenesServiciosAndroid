@@ -10,4 +10,33 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_extra_info">extraInfo</string>
+
+    <string name="desc1">DESCRIPCIÓN:</string>
+    <string name="desc">Descripción:</string>
+    <string name="nom">Nombre:</string>
+    <string name="con">Contraseña:</string>
+    <string name="search">Buscar…</string>
+
+    <string name="ac">Aceptar</string>
+    <string name="buscar">Buscar</string>
+    <string name="cor">Correo</string>
+    <string name="nosol">No. Solicitud</string>
+    <string name="hol">HOLA!</string>
+
+    <string name="est">ESTATUS: </string>
+    <string name="folio">FOLIO: </string>
+
+    <string name="ini">Iniciar</string>
+    <string name="iniciar">Iniciar sesión</string>
+
+    <string name="ubi1">UBICACIÓN:</string>
+    <string name="nueva">Nueva solicitud</string>
+
+    <string name="seguir">Seguir solicitud</string>
+    <string name="grd">Guardar</string>
+
+    <string name="ingresa">Ingresa la información solicitada</string>
+
+    <string name="are">Área:</string>
+    <string name="ubi">Ubicación:</string>
 </resources>
