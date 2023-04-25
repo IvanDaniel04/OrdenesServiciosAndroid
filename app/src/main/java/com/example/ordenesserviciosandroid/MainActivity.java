@@ -1,11 +1,13 @@
 package com.example.ordenesserviciosandroid;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,34 +28,60 @@ public class MainActivity extends AppCompatActivity {
 
     Button botonIniciar, boton, botonInsertt;
     EditText eContrasena, eCorreo, enviarID, nombrRecibido;
+    TextView txtSeguimiento, txtRegistrar;
     RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Desactivar rotación de la ventana
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         botonIniciar = (Button) findViewById(R.id.btnIniciar);
         eContrasena = (EditText) findViewById(R.id.editContrasena);
+        txtSeguimiento = (TextView) findViewById(R.id.textSeguimiento);
+        txtRegistrar = (TextView) findViewById(R.id.textRegistrar);
         eCorreo = (EditText) findViewById(R.id.editCorreo);
+       /*
+
         enviarID = (EditText) findViewById(R.id.idEnviar);
         nombrRecibido = (EditText) findViewById(R.id.nombreRecibido);
-        boton = (Button) findViewById(R.id.botonQ);
         botonInsertt = (Button) findViewById(R.id.insButton);
-
-        botonInsertt.setOnClickListener(new View.OnClickListener() {
+           boton = (Button) findViewById(R.id.botonQ);
+           botonInsertt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, registrarOrden.class);
                 startActivity(intent);
             }
         });
+        */
 
+        txtRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, registrarOrden.class);
+                startActivity(intent);
+            }
+        });
+        txtSeguimiento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, seguimientOrden.class);
+                startActivity(intent);
+            }
+        });
+
+        /*
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 BuscarProducto("http://192.168.100.5:80/ordenes/consultas.php?id=" + enviarID.getText() + "");
             }
         });
+
+         */
 
         botonIniciar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
     private void BuscarUsuario(String correo, String contrasena) {
         String URL = "http://192.168.100.5:80/ordenes/sesion.php?correo=" + correo + "&contrasena=" + contrasena;
@@ -135,6 +164,8 @@ public class MainActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
+
+
 
 
 }

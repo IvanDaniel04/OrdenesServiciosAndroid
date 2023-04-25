@@ -1,41 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="416dp"
+        android:layout_height="76dp"
+        android:clickable="true"
         android:orientation="horizontal"
         android:padding="1dp"
-        android:clickable="true">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <TextView
             android:id="@+id/textViewId"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="16sp"
             android:layout_marginBottom="8dp"
-            android:clickable="true" />
+            android:layout_weight="1"
+            android:clickable="true"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/textViewDescripcion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:textSize="16sp"
             android:layout_marginBottom="8dp"
-            android:clickable="true" />
+            android:layout_weight="2"
+            android:clickable="true"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/textViewUbicacion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:textSize="16sp"
             android:layout_marginBottom="8dp"
-            android:clickable="true" />
+            android:layout_weight="2"
+            android:clickable="true"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
