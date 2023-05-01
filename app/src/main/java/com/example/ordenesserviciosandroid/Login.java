@@ -36,7 +36,7 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         //Desactivar rotación de la ventana
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -44,6 +44,7 @@ public class Login extends AppCompatActivity {
         eContrasena = (EditText) findViewById(R.id.editContrasena);
         //  txtSeguimiento = (TextView) findViewById(R.id.textSeguimiento);
         //txtRegistrar = (TextView) findViewById(R.id.textRegistrar);
+        imgVolver = (ImageView) findViewById(R.id.imgVol11);
         eCorreo = (EditText) findViewById(R.id.editCorreo);
 
         imgVolver.setOnClickListener(new View.OnClickListener() {
