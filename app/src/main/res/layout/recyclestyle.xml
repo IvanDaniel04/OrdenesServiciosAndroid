@@ -1,41 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="1dp"
-        android:clickable="true">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/recCard"
+        android:layout_width="398dp"
+        android:layout_height="250dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/card_border"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:background="@drawable/borderpurple"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:textSize="18sp"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/folio"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textViewId"
+                            android:layout_width="269dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
 
 
-        <TextView
-            android:id="@+id/textViewId"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp"
-            android:clickable="true" />
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="79dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            app:srcCompat="@drawable/i_notreaparar"
+                            tools:ignore="ContentDescription" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            >
 
-        <TextView
-            android:id="@+id/textViewDescripcion"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp"
-            android:clickable="true" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="@string/desc1"
+                                android:textColor="#181B3A"
+                                android:textStyle="bold|italic" />
 
-        <TextView
-            android:id="@+id/textViewUbicacion"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp"
-            android:clickable="true" />
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                            <TextView
+                                android:id="@+id/textViewDescripcion"
+                                android:layout_width="match_parent"
+                                android:layout_height="70dp"
+                                android:layout_marginEnd="10dp"
+                                android:textColor="@color/griz" />
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="10dp"
+                                android:text="@string/ubi1"
+                                android:textColor="#181B3A"
+                                android:textStyle="bold|italic" />
+
+                            <TextView
+                                android:id="@+id/textViewUbicacion"
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="4dp" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

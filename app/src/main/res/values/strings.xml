@@ -10,12 +10,21 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_extra_info">extraInfo</string>
-
+    <string name="cambiar">Cambiar estatus:</string>
+    <string name="errord">Parece que no llenaste todos los campos</string>
+    <string name="fec">Fecha</string>
+    <string name="esta">Estatus</string>
     <string name="desc1">DESCRIPCIÓN:</string>
     <string name="desc">Descripción:</string>
     <string name="nom">Nombre:</string>
     <string name="con">Contraseña:</string>
     <string name="search">Buscar…</string>
+
+
+    <string name="ter">Terminado</string>
+    <string name="esp">En Espera:</string>
+    <string name="noaten">No atendido:</string>
+    <string name="atendido">Atendido:</string>
 
     <string name="ac">Aceptar</string>
     <string name="buscar">Buscar</string>
@@ -39,4 +48,12 @@
 
     <string name="are">Área:</string>
     <string name="ubi">Ubicación:</string>
+
+    <string-array name="Estatus">
+        <item>En Espera</item>
+        <item>Atendido</item>
+        <item>No Antendido</item>
+        <item>Terminado</item>
+    </string-array>
+
 </resources>

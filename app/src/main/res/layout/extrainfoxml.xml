@@ -4,13 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/i_fondoini1"
+    android:background="@color/white"
     tools:context=".registrarOrden">
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_margin="5dp"
+        android:background="@color/white"
+        android:foregroundGravity="center"
+        android:gravity="center|center_vertical"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +23,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="399dp"
+            android:layout_height="85dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -36,105 +41,247 @@
                     tools:ignore="ContentDescription" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/hola"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="ORDEN DE SERVICIO"
+                android:textColor="@color/griz"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:layout_margin="5dp"
-        android:background="@color/white"
-        android:foregroundGravity="center"
-        android:gravity="center|center_vertical"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
-
-        <TextView
-            android:id="@+id/hola"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:layout_gravity="center"
-
-            android:gravity="center"
-            android:text="@string/ingresa"
-            android:textColor="@color/griz"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-
-        <EditText
-
-            android:id="@+id/nombrePlain"
-            android:layout_width="357dp"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="10dp"
-            android:autofillHints="username"
-            android:background="@drawable/card_border"
-            android:drawableStart="@drawable/v_person"
+            android:layout_marginHorizontal="2dp"
+            android:layout_marginVertical="2dp"
             android:drawablePadding="4dp"
-            android:hint="@string/nom"
-            android:inputType="textPersonName"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textColorHighlight="@color/cardview_dark_background" />
+            android:orientation="horizontal"
+            android:padding="10dp">
 
-        <EditText
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/v_area_24" />
 
-            android:id="@+id/desPlain"
-            android:layout_width="357dp"
-            android:layout_height="55dp"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/are"
+                android:textColor="@color/griz"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/griz"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/card_border"
-            android:drawableStart="@drawable/v_solicitud"
-            android:drawablePadding="4dp"
-            android:hint="@string/desc"
-            android:inputType="text"
-            android:lines="2"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textColorHighlight="@color/cardview_dark_background"
-            tools:ignore="Autofill" />
+            android:layout_marginVertical="2dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
-        <EditText
-            android:id="@+id/areaPlain"
-            android:layout_width="357dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/card_border"
-            android:drawableStart="@drawable/v_area_24"
-            android:drawablePadding="4dp"
-            android:hint="@string/are"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textColorHighlight="@color/cardview_dark_background"
-            tools:ignore="Autofill,TextFields" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/v_solicitud" />
 
-        <EditText
-            android:id="@+id/ubicacionPlain"
-            android:layout_width="357dp"
-            android:layout_height="50dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/desc"
+                    android:textColor="@color/griz"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/txtDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:textColor="@color/griz"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/card_border"
-            android:drawableStart="@drawable/v_ubicacion_24"
+            android:layout_marginHorizontal="2dp"
+            android:layout_marginVertical="2dp"
             android:drawablePadding="4dp"
-            android:hint="@string/ubi"
-            android:inputType="text"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textColorHighlight="@color/cardview_dark_background"
-            tools:ignore="Autofill" />
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/v_ubicacion_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/ubi"
+                android:textColor="@color/griz"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtUbi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/griz"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="2dp"
+            android:layout_marginVertical="2dp"
+            android:drawablePadding="4dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/v_fecha_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/fec"
+                android:textColor="@color/griz"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtFecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/griz"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="2dp"
+            android:layout_marginVertical="2dp"
+            android:drawablePadding="4dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/v_estatus_24" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/esta"
+                android:textColor="@color/griz"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/txtEstatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/griz"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@drawable/card_border"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="2dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/v_solicitud" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/cambiar"
+                    android:textColor="@color/griz"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/spinners"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
 
         <Button
-            android:onClick="insertarDatos"
             android:id="@+id/btnInsert"
             android:layout_width="352dp"
             android:layout_height="50dp"
@@ -142,6 +289,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/lavender_border"
             android:backgroundTint="@color/purple"
+            android:onClick="insertarDatos"
             android:text="@string/grd"
             android:textColor="@color/white"
             android:textSize="18sp"
@@ -149,6 +297,7 @@
 
 
     </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
