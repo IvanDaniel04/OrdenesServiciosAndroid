@@ -45,7 +45,6 @@ public class registrarOrden extends AppCompatActivity {
         ubiText = (EditText) findViewById(R.id.ubicacionPlain);
         imgVolveri = (ImageView) findViewById(R.id.imgVolIni);
 
-
         imgVolveri.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
